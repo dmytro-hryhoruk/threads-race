@@ -1,16 +1,20 @@
 package mate.academy.threads;
 
-public class SecondThread implements Runnable {
-    private int counter;
+import mate.academy.Counter;
 
-    public SecondThread() {
-        System.out.println("second thread is running");
+public class SecondThread implements Runnable {
+    private Counter counter;
+
+    public SecondThread(Counter counter) {
+        this.counter = counter;
+        System.out.println("first thread is running");
     }
 
     @Override
     public void run() {
-        for (int i = 0; i <= 100; i++) {
-            System.out.println("second thread counter = " + counter++);
+        while (counter.getCounter() <= 100) {
+            System.out.println("second thread counter = " + counter.getCounter());
+            counter.incrementCounter();
         }
     }
 }

@@ -1,15 +1,19 @@
 package mate.academy.threads;
 
-public class FirstThread extends Thread {
-    private int counter;
+import mate.academy.Counter;
 
-    public FirstThread() {
+public class FirstThread extends Thread {
+    private Counter counter;
+
+    public FirstThread(Counter counter) {
+        this.counter = counter;
         System.out.println("first thread is running");
     }
 
     public void run() {
-        for (int i = 0; i <= 100; i++) {
-            System.out.println("first thread counter = " + counter++);
+        while (counter.getCounter() <= 100) {
+            System.out.println("first thread counter = " + counter.getCounter());
+            counter.incrementCounter();
         }
     }
 }
